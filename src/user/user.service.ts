@@ -15,6 +15,10 @@ export class UserService {
     return await this.userRepo.findOne({ where: { id: id } });
   }
 
+  async findOneByUsername(username: string) {
+    return await this.userRepo.findOne({ where: { email: username } });
+  }
+
   async createUser(CreateUserDto: CreateUserDto) {
     const user = this.userRepo.create(CreateUserDto);
     return await this.userRepo.save(user);
