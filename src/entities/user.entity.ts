@@ -1,32 +1,32 @@
 import * as bcrypt from 'bcrypt';
 import {
-  BeforeInsert,
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
+    BeforeInsert,
+    Column,
+    Entity,
+    OneToMany,
+    PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Comment } from './comment.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column({ unique: true, nullable: false })
-  name: string;
+    @Column({ unique: true, nullable: false })
+    name: string;
 
-  @Column({ unique: true, nullable: false })
-  email: string;
+    @Column({ unique: true, nullable: false })
+    email: string;
 
-  @Column({ nullable: false })
-  password: string;
+    @Column({ nullable: false })
+    password: string;
 
-  @OneToMany(() => Comment, (comment) => comment.user)
-  comments: Comment[];
+    @OneToMany(() => Comment, (comment) => comment.user)
+    comments: Comment[];
 
-  @BeforeInsert()
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
+    @BeforeInsert()
+    async hashPassword() {
+        this.password = await bcrypt.hash(this.password, 10);
+    }
 }

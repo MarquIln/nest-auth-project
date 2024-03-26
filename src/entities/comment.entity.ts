@@ -4,15 +4,15 @@ import { User } from './user.entity';
 
 @Entity()
 export class Comment {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column()
-  text: string;
+    @Column()
+    text: string;
 
-  @ManyToOne(() => User, (user) => user.comments)
-  user: User;
+    @ManyToOne(() => User, (user) => user.comments)
+    user: User;
 
-  @ManyToOne(() => Topic, (topic) => topic.comments)
-  topic: Topic;
+    @ManyToOne(() => Topic, (topic) => topic.comments)
+    topic: Topic;
 }
